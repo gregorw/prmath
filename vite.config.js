@@ -5,6 +5,7 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 export default defineConfig({
   root: "src",
   publicDir: "../docs",
+  base: "/prmath/",
   plugins: [svelte()],
   server: {
     port: 5000
