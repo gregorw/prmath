@@ -49,8 +49,13 @@
 		</Form>
 	</Column>
 </Row>
-<Row>
+<Row style="margin-bottom: 3rem;">
 	<Column>
 		<p>The probability of acceptance {formula} is: {displayChance}%</p>
+	</Column>
+</Row>
+<Row>
+	<Column>
+		<p style="color: #ccc; font-size: .8rem;"><em>Disclaimer: This is a theory. As every theory it is limited. A theory only models reality to some degree.</em></p>
 	</Column>
 </Row>
