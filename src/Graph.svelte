@@ -1,5 +1,5 @@
 <script>
-	import { LineChart } from '@carbon/charts-svelte'
+	import { ComboChart } from '@carbon/charts-svelte'
 	import '@carbon/charts/styles.min.css'
 	import chance from './chance';
 
@@ -28,7 +28,7 @@
       bottom: {
         title: "Topics",
         mapsTo: "t",
-        scaleType: "labels"
+        scaleType: "linear"
       },
       left: {
         title: "Chance",
@@ -45,7 +45,7 @@
 			type: "scatter",
 			options: {
 				points: {
-					radius: 10
+					radius: 7
 				}
 			},
 			correspondingDatasets: [
@@ -54,11 +54,11 @@
 		}],
     color: {
       scale: {
-        'Chance': '#ddd'
+        'Chance': 'var(--cds-ui-03, #ddd)'
       }
     },
     height: "400px"
   }
 </script>
 
-<LineChart {data} {options}></LineChart>
+<ComboChart {data} {options}></ComboChart>
