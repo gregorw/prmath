@@ -8,7 +8,10 @@
     "preview": "sirv dist --no-clear"
   },
   "devDependencies": {
+    "@carbon/charts-svelte": "^0.55.1",
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.31",
+    "carbon-components-svelte": "^0.62.1",
+    "d3": "^7.3.0",
     "svelte": "^3.44.2",
     "vite": "^2.7.1"
   },
