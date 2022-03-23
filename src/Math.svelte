@@ -16,7 +16,7 @@
 
 	$: topics = features + refactorings + designDecisions + surprises;
 	$: chance = chanceOfAcceptance(p, collaborators, topics);
-	$: displayChance = chance.toFixed(2) * 100
+	$: displayChance = Math.round(chance * 100);
 
 	onMount(() => {
 		MathJax.typeset();
@@ -41,11 +41,11 @@
 				<Slider labelText="Surprises" max={5} bind:value={surprises} />
 			</FormGroup>
 			<FormGroup legendText="Number of collaborators \(c\)">
-				<p>How many collaborators do you have (excluding yourself)?"</p>
+				<p>How many collaborators do you have (excluding yourself)?</p>
 				<Slider max={5} bind:value={collaborators} />
 			</FormGroup>
 			<FormGroup legendText="Probability of acceptance \(p\)">
-				<p>What is the likelihood that your collaborators accept any topic?"</p>
+				<p>What is the likelihood that your collaborators accept any topic?</p>
 				<Slider max={1} step={0.1} bind:value={p} />
 			</FormGroup>
 		</Form>

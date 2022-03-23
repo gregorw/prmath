@@ -7,14 +7,13 @@
 
   let xAxis = [...Array(11).keys()];
   let data = xAxis.map(t => 0);
-  let chanceOfAcceptance = 0;
 
   $: {
     data = xAxis.map(t => {
       return {
         t: t,
         value: chance(p, t, collaborators),
-        group: 'Chance of acceptance'
+        group: 'Chance'
       }
     });
     data.push({
@@ -24,25 +23,40 @@
     });
   }
 
-
   let options = {
     axes: {
       bottom: {
-        title: "Number of topics",
+        title: "Topics",
         mapsTo: "t",
         scaleType: "labels"
       },
       left: {
-        title: "Chance of acceptance",
+        title: "Chance",
         mapsTo: "value",
         scaleType: "linear"
       }
     },
-    // color: {
-    //   scale: {
-    //     'Chance of acceptance': '#ddd'
-    //   }
-    // },
+    comboChartTypes: [{
+			type: "line",
+			correspondingDatasets: [
+				"Chance"
+			]
+		}, {
+			type: "scatter",
+			options: {
+				points: {
+					radius: 10
+				}
+			},
+			correspondingDatasets: [
+				"Your PR"
+			]
+		}],
+    color: {
+      scale: {
+        'Chance': '#ddd'
+      }
+    },
     height: "400px"
   }
 </script>
