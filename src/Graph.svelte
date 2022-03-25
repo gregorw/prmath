@@ -1,6 +1,7 @@
 <script>
 	import { ComboChart } from '@carbon/charts-svelte'
 	import '@carbon/charts/styles.min.css'
+	// import '@carbon/charts/styles-g100.css'
 	import chance from './chance';
 
   export let p, topics, collaborators;
@@ -33,7 +34,11 @@
       left: {
         title: "Chance",
         mapsTo: "value",
-        scaleType: "linear"
+        scaleType: "linear",
+        thresholds: [{
+					"value": 0.5,
+          "label": "Chance",
+				}]
       }
     },
     comboChartTypes: [{
