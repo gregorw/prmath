@@ -5,28 +5,23 @@
 	import Percentage from './Percentage.svelte';
 	import chanceOfAcceptance, { formula } from './chance';
 
-	let features = 1
-	let refactorings = 0
-	let designDecisions = 0
-	let surprises = 0
-	let topics = 0
-	let collaborators = 2
-	let p = 0.8
-	let chance
-	let displayChance
 	let query = window.location.search
 	let params = new URLSearchParams(query)
+
+	let features = parseInt(params.get('f') || 1)
+	let refactorings = parseInt(params.get('r') || 0)
+	let designDecisions = parseInt(params.get('d') || 0)
+	let surprises = parseInt(params.get('s') || 0)
+	let collaborators = parseInt(params.get('c') || 2)
+	let p = parseFloat(params.get('p') || 0.8)
+
+	let topics
+	let chance
+	let displayChance
 
 	$: topics = features + refactorings + designDecisions + surprises;
 	$: chance = chanceOfAcceptance(p, collaborators, topics);
 	$: displayChance = Math.round(chance * 100);
-
-	$: features = parseInt(params.get('f') || features)
-	$: refactorings = parseInt(params.get('r') || refactorings)
-	$: designDecisions = parseInt(params.get('d') || designDecisions)
-	$: surprises = parseInt(params.get('s') || surprises)
-	$: collaborators = parseInt(params.get('c') || collaborators)
-	$: p = parseFloat(params.get('p') || p)
 
 	onMount(() => {
 		MathJax.typeset();
