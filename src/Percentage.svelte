@@ -32,4 +32,6 @@
   }
 </script>
 
-<GaugeChart {data} {options}></GaugeChart>
+<figure {...$$restProps}>
+  <GaugeChart {data} {options}></GaugeChart>
+</figure>
