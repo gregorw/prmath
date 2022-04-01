@@ -2,6 +2,7 @@
   import { Row, Column, Form, FormGroup, Slider } from 'carbon-components-svelte'
   import { onMount } from 'svelte';
 	import Graph from './Graph.svelte';
+	import Percentage from './Percentage.svelte';
 	import chanceOfAcceptance, { formula } from './chance';
 
 	let features = 1
@@ -52,7 +53,8 @@
 	</Column>
 	<Column lg={8}>
 		<h4>Result</h4>
-		<p>The probability of acceptance {formula} is: {displayChance}%</p>
+		<p>The probability of acceptance {formula} is:</p>
+		<Percentage value={displayChance} />
 		<Graph {p} {topics} {collaborators} />
 	</Column>
 </Row>

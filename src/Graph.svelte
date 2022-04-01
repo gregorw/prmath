@@ -37,7 +37,7 @@
         scaleType: "linear",
         thresholds: [{
 					"value": 0.5,
-          "label": "Chance",
+          "label": "Threshold",
 				}]
       }
     },
@@ -62,8 +62,12 @@
         'Chance': 'var(--cds-ui-03, #ddd)'
       }
     },
-    height: "400px"
+    height: "400px",
+    animations: false
   }
 </script>
 
+<p>
+  Note that the more topics you include in your pull request and the more collaborators you have the more rapidly the chance that your PR gets accepted declines.
+</p>
 <ComboChart {data} {options}></ComboChart>

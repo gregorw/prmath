@@ -1,0 +1,11 @@
+@import 'carbon-components/scss/globals/scss/vendor/@carbon/colors/scss/mixins';
+
+.MathJax {
+  text-align: left !important;
+}
+
+:root {
+  --traffic-light-green: #{$teal-50};
+  --traffic-light-yellow: #{$yellow-30};
+  --traffic-light-red: #{$magenta-60};
+}
