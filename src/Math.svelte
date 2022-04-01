@@ -14,10 +14,19 @@
 	let p = 0.8
 	let chance
 	let displayChance
+	let query = window.location.search
+	let params = new URLSearchParams(query)
 
 	$: topics = features + refactorings + designDecisions + surprises;
 	$: chance = chanceOfAcceptance(p, collaborators, topics);
 	$: displayChance = Math.round(chance * 100);
+
+	$: features = parseInt(params.get('f') || features)
+	$: refactorings = parseInt(params.get('r') || refactorings)
+	$: designDecisions = parseInt(params.get('d') || designDecisions)
+	$: surprises = parseInt(params.get('s') || surprises)
+	$: collaborators = parseInt(params.get('c') || collaborators)
+	$: p = parseFloat(params.get('p') || p)
 
 	onMount(() => {
 		MathJax.typeset();
