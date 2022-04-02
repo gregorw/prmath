@@ -18,3 +18,11 @@
     margin-bottom: $value;
   }
 }
+
+[theme="g100"] {
+  @import '@carbon/charts/styles/styles-g100.scss';
+}
+
+.full-height {
+  min-height: 100vh;
+}

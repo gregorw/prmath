@@ -1,9 +1,11 @@
 <script>
   import { Content, Grid, Row, Column } from 'carbon-components-svelte'
 	import Math from './Math.svelte'
+	import DarkMode from './DarkMode.svelte'
 </script>
 
-<Content>
+<DarkMode />
+<Content class="full-height">
 	<Grid noGutter>
 		<h1 style="margin-bottom: 2rem;">PR Math</h1>
 		<Row class="mb-08">
