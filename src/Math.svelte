@@ -1,19 +1,21 @@
-<script>
+<script lang="ts">
   import { Row, Column, Form, FormGroup, Slider } from 'carbon-components-svelte'
   import { onMount } from 'svelte';
 	import Graph from './Graph.svelte';
 	import Percentage from './Percentage.svelte';
 	import chanceOfAcceptance, { formula } from './chance';
 
-	let query = window.location.search
-	let params = new URLSearchParams(query)
+	const url = new URL(window.location);
+	let params = url.searchParams
 
-	let features = parseInt(params.get('f') || 1)
-	let refactorings = parseInt(params.get('r') || 0)
-	let designDecisions = parseInt(params.get('d') || 0)
-	let surprises = parseInt(params.get('s') || 0)
-	let collaborators = parseInt(params.get('c') || 2)
-	let p = parseFloat(params.get('p') || 0.8)
+	const parse = (param, init = 0, cast = parseInt) => cast(params.get(param) || init)
+
+	let features = parse('f', 1)
+	let refactorings = parse('r')
+	let designDecisions = parse('d')
+	let surprises = parse('s')
+	let collaborators = parse('c', 2)
+	let p = parse('p', 0.8, parseFloat)
 
 	let topics
 	let chance
