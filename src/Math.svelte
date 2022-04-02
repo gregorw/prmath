@@ -30,12 +30,6 @@
 
 <Row class="mb-08">
 	<Column lg={8}>
-		<p class="mb-05">What is the chance that your pull request gets accepted?</p>
-		<p>As effective software engineers we want our pull requests to get accepted quickly such that we can ship incremental changes to production and increase the value of our software to our users.</p>
-	</Column>
-</Row>
-<Row class="mb-08">
-	<Column lg={8}>
 		<h4 class="mb-06">Your pull request</h4>
 		<Form>
 			<FormGroup legendText="Pull request topics \(t\)">

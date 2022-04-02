@@ -1,7 +1,5 @@
 <script>
 	import { ComboChart } from '@carbon/charts-svelte'
-	import '@carbon/charts/styles.min.css'
-	// import '@carbon/charts/styles-g100.css'
 	import chance from './chance';
 
   export let p, topics, collaborators;
