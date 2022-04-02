@@ -9,6 +9,10 @@
 	let params = url.searchParams
 
 	const parse = (param, init = 0, cast = parseInt) => cast(params.get(param) || init)
+	const update = (param, value) => {
+		url.searchParams.set(param, value);
+		window.history.pushState({}, '', url);
+	}
 
 	let features = parse('f', 1)
 	let refactorings = parse('r')
@@ -24,6 +28,13 @@
 	$: topics = features + refactorings + designDecisions + surprises;
 	$: chance = chanceOfAcceptance(p, collaborators, topics);
 	$: displayChance = Math.round(chance * 100);
+
+	$: update('f', features);
+	$: update('r', refactorings);
+	$: update('d', designDecisions);
+	$: update('s', surprises);
+	$: update('c', collaborators);
+	$: update('p', p);
 
 	onMount(() => {
 		MathJax.typeset();
