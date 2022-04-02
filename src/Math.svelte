@@ -28,22 +28,22 @@
 	})
 </script>
 
-<Row class="mb-4">
+<Row class="mb-08">
 	<Column lg={8}>
-		<p class="mb-1">What is the chance that your pull request gets accepted?</p>
+		<p class="mb-05">What is the chance that your pull request gets accepted?</p>
 		<p>As effective software engineers we want our pull requests to get accepted quickly such that we can ship incremental changes to production and increase the value of our software to our users.</p>
 	</Column>
 </Row>
-<Row class="mb-6">
+<Row class="mb-08">
 	<Column lg={8}>
-		<h4 class="mb-2">Your pull request</h4>
+		<h4 class="mb-06">Your pull request</h4>
 		<Form>
 			<FormGroup legendText="Pull request topics \(t\)">
-				<p class="mb-2">How many topics does the pull request involve?</p>
-				<Slider class="mb-1" labelText="Features" max={5} bind:value={features} />
-				<Slider class="mb-1" labelText="Refactorings" max={5} bind:value={refactorings} />
-				<Slider class="mb-1" labelText="Design Decisions" max={5} bind:value={designDecisions} />
-				<Slider class="mb-1" labelText="Surprises" max={5} bind:value={surprises} />
+				<p class="mb-06">How many topics does the pull request involve?</p>
+				<Slider class="mb-05" labelText="Features" max={5} bind:value={features} />
+				<Slider class="mb-05" labelText="Refactorings" max={5} bind:value={refactorings} />
+				<Slider class="mb-05" labelText="Design Decisions" max={5} bind:value={designDecisions} />
+				<Slider labelText="Surprises" max={5} bind:value={surprises} />
 			</FormGroup>
 			<FormGroup legendText="Number of collaborators \(c\)">
 				<p>How many collaborators do you have (excluding yourself)?</p>
@@ -56,9 +56,9 @@
 		</Form>
 	</Column>
 	<Column lg={8}>
-		<h4 class="mb-2">Result</h4>
+		<h4 class="mb-06">Result</h4>
 		<p>The probability of acceptance {formula} is:</p>
-		<Percentage value={displayChance} class="mb-4"/>
+		<Percentage value={displayChance} class="mb-10"/>
 		<Graph {p} {topics} {collaborators} />
 	</Column>
 </Row>

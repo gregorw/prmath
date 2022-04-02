@@ -1,5 +1,5 @@
-@use 'carbon-components/scss/globals/scss/vendor/@carbon/colors/scss/mixins' as *;
-@use 'carbon-components/scss/globals/scss/vendor/@carbon/elements/scss/layout/generated/layout' as *;
+@use '@carbon/colors' as *;
+@use '@carbon/layout' as *;
 
 .MathJax {
   text-align: left !important;
@@ -11,8 +11,10 @@
   --traffic-light-red: #{$magenta-60};
 }
 
-@for $i from 1 through length($carbon--layout) {
-  .mb-#{$i} {
-    margin-bottom: nth($carbon--layout, $i);
+// $spacing: (spacing-XX: $spacing-XX, …)
+@each $name, $value in $spacing {
+  $two-digits: str-slice($name, -2, -1); // spacing-XX => XX
+  .mb-#{$two-digits} {
+    margin-bottom: $value;
   }
 }
