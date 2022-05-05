@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Row, Column, Form, FormGroup, Slider, Select, SelectItem } from 'carbon-components-svelte'
+  import { onMount } from 'svelte';
 	import Graph from './Graph.svelte';
 	import Percentage from './Percentage.svelte';
 	import chanceOfAcceptance, { strategies, formula } from './chance';
@@ -47,6 +48,7 @@
 	// $: latex = formula(strategy);
 	// $: latexFormula = typeset(latex);
 
+	onMount(() => MathJax.typeset());
 </script>
 
 <Row class="mb-08">
@@ -75,6 +77,9 @@
 						<SelectItem value={s} text={s} />
 					{/each}
 				</Select>
+				{#each strategies as s}
+					<p>{formula(s)}</p>
+				{/each}
 			</FormGroup>
 		</Form>
 	</Column>
