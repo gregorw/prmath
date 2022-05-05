@@ -77,15 +77,15 @@
 						<SelectItem value={s} text={s} />
 					{/each}
 				</Select>
-				{#each strategies as s}
-					<p>{formula(s)}</p>
-				{/each}
 			</FormGroup>
 		</Form>
 	</Column>
 	<Column lg={8}>
 		<h2 class="mb-06">Result</h2>
-		<p id="formula">The probability of acceptance is:</p>
+		<p>The probability of acceptance is:</p>
+		{#each strategies as s}
+			<p class='formula' class:show={s == strategy}>{formula(s)}</p>
+		{/each}
 		<Percentage value={displayChance} class="mb-10"/>
 		<Graph {p} {topics} {collaborators} {strategy} />
 	</Column>
@@ -100,5 +100,12 @@
 	.disclaimer {
 		color: var(--cds-text-03);
 		font-size: var(--cds-label-01-font-size);
+	}
+
+	.formula {
+		display: none;
+	}
+	.formula.show {
+		display: block;
 	}
 </style>

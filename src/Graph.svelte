@@ -57,11 +57,6 @@
 				"Your PR"
 			]
 		}],
-    color: {
-      scale: {
-        // 'consensus': 'var(--cds-ui-03, #ddd)'
-      }
-    },
     tooltip: {
       showTotal: false
     },
