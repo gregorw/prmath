@@ -1,23 +1,26 @@
 <script>
 	import { ComboChart } from '@carbon/charts-svelte'
-	import chance from './chance';
+	import chance, { strategies } from './chance';
 
-  export let p, topics, collaborators;
+  export let p, topics, collaborators, strategy;
 
   let xAxis = [...Array(11).keys()];
-  let data = xAxis.map(t => 0);
+  let data = xAxis.map(() => 0);
 
   $: {
-    data = xAxis.map(t => {
-      return {
-        t: t,
-        value: chance(p, t, collaborators),
-        group: 'Chance'
-      }
+    data = xAxis.flatMap(t => {
+      return strategies.map(s => {
+        return {
+          t: t,
+          value: chance(p, t, collaborators, s),
+          group: s
+        }
+      });
     });
+
     data.push({
       t: topics,
-      value: chance(p, topics, collaborators),
+      value: chance(p, topics, collaborators, strategy),
       group: 'Your PR'
     });
   }
@@ -33,6 +36,7 @@
         title: "Chance",
         mapsTo: "value",
         scaleType: "linear",
+        domain: [0, 1],
         thresholds: [{
 					"value": 0.5,
           "label": "Threshold",
@@ -41,9 +45,7 @@
     },
     comboChartTypes: [{
 			type: "line",
-			correspondingDatasets: [
-				"Chance"
-			]
+			correspondingDatasets: strategies
 		}, {
 			type: "scatter",
 			options: {
@@ -55,10 +57,8 @@
 				"Your PR"
 			]
 		}],
-    color: {
-      scale: {
-        'Chance': 'var(--cds-ui-03, #ddd)'
-      }
+    tooltip: {
+      showTotal: false
     },
     height: "400px",
     animations: false
@@ -66,6 +66,7 @@
 </script>
 
 <p>
-  Note that the more topics you include in your pull request and the more collaborators you have the more rapidly the chance that your PR gets accepted declines.
+  Note that the more topics you include in your pull request and the more
+  collaborators you have the more rapidly the chance that your PR gets accepted declines.
 </p>
-<ComboChart {data} {options}></ComboChart>
+<ComboChart {data} {options} />
