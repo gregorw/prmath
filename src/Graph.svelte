@@ -5,16 +5,19 @@
   export let p, topics, collaborators, strategy;
 
   let xAxis = [...Array(11).keys()];
-  let data = xAxis.map(t => 0);
+  let data = xAxis.map(() => 0);
 
   $: {
-    data = xAxis.map(t => {
-      return {
-        t: t,
-        value: chance(p, t, collaborators, strategy),
-        group: strategy
-      }
+    data = xAxis.flatMap(t => {
+      return strategies.map(s => {
+        return {
+          t: t,
+          value: chance(p, t, collaborators, s),
+          group: s
+        }
+      });
     });
+
     data.push({
       t: topics,
       value: chance(p, topics, collaborators, strategy),
@@ -56,8 +59,11 @@
 		}],
     color: {
       scale: {
-        'consensus': 'var(--cds-ui-03, #ddd)'
+        // 'consensus': 'var(--cds-ui-03, #ddd)'
       }
+    },
+    tooltip: {
+      showTotal: false
     },
     height: "400px",
     animations: false

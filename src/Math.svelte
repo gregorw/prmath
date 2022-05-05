@@ -35,7 +35,7 @@
 	let displayChance
 
 	$: topics = features + refactorings + designDecisions + surprises;
-	$: chance = chanceOfAcceptance(p, collaborators, topics, strategy);
+	$: chance = chanceOfAcceptance(p, topics, collaborators, strategy);
 	$: displayChance = Math.round(chance * 100);
 
 	$: update('f', features);
