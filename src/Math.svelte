@@ -82,11 +82,14 @@
 	</Column>
 	<Column lg={8}>
 		<h2 class="mb-06">Result</h2>
+		{#if topics < 1}
+			<p class="mb-06"><em>There is not much to review in this PR. Maybe add some topics?</em></p>
+		{/if}
 		<p>The probability of acceptance is:</p>
 		{#each strategies as s}
 			<p class='formula' class:show={s == strategy}>{formula(s)}</p>
 		{/each}
-		<Percentage value={displayChance} class="mb-10"/>
+		<Percentage value={displayChance} {topics} class="mb-10"/>
 		<Graph {p} {topics} {collaborators} {strategy} />
 	</Column>
 </Row>
