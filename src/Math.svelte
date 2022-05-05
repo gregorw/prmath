@@ -55,6 +55,14 @@
 	<Column lg={8}>
 		<h2 class="mb-06">Your pull request</h2>
 		<Form>
+			<FormGroup legendText="Decison making strategy">
+				<p>What does it take to approve a PR within your team?</p>
+				<Select bind:selected={strategy}>
+					{#each strategies as s}
+						<SelectItem value={s} text={s} />
+					{/each}
+				</Select>
+			</FormGroup>
 			<FormGroup legendText="Pull request topics \(t\)">
 				<p class="mb-06">How many topics does the pull request involve?</p>
 				<Slider class="mb-05" labelText="Features" max={5} bind:value={features} />
@@ -69,14 +77,6 @@
 			<FormGroup legendText="Probability of acceptance \(p\)">
 				<p>What is the likelihood that your collaborators accept any topic?</p>
 				<Slider max={1} step={0.1} bind:value={p} />
-			</FormGroup>
-			<FormGroup legendText="Decison making strategy">
-				<p>What does it take to approve a PR within your team?</p>
-				<Select bind:selected={strategy}>
-					{#each strategies as s}
-						<SelectItem value={s} text={s} />
-					{/each}
-				</Select>
 			</FormGroup>
 		</Form>
 	</Column>
