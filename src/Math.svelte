@@ -13,13 +13,6 @@
 		url.searchParams.set(param, value);
 		window.history.pushState({}, '', url);
 	}
-	// const typeset = (math) => {
-	// 	const destination = document.getElementById('formula');
-	// 	if (!destination) { return }
-	// 	const options = MathJax.getMetricsFor(destination, false);
-	// 	const html = MathJax.tex2svg(math, options);
-	// 	return html.outerHTML;
-	// }
 
 	let features = parse('f', 1)
 	let refactorings = parse('r')
@@ -28,7 +21,6 @@
 	let collaborators = parse('c', 2)
 	let p = parse('p', 0.8, parseFloat)
 	let strategy = params.get('strategy') || strategies[0]
-	// let latexFormula
 
 	let topics
 	let chance
@@ -45,8 +37,6 @@
 	$: update('c', collaborators);
 	$: update('p', p);
 	$: update('strategy', strategy);
-	// $: latex = formula(strategy);
-	// $: latexFormula = typeset(latex);
 
 	onMount(() => MathJax.typeset());
 </script>
