@@ -1,74 +1,28 @@
 <script lang="ts">
-  import { Row, Column, Form, FormGroup, Slider, Select, SelectItem } from 'carbon-components-svelte'
+  import { Row, Column } from 'carbon-components-svelte'
   import { onMount } from 'svelte';
 	import Graph from './Graph.svelte';
+	import Input from './Input.svelte';
+	import Formulas from './Formulas.svelte';
 	import Percentage from './Percentage.svelte';
-	import chanceOfAcceptance, { strategies, formula } from './chance';
+	import chanceOfAcceptance from './chance';
 
-	const url = new URL(window.location);
-	let params = url.searchParams
-
-	const parse = (param, init = 0, cast = parseInt) => cast(params.get(param) || init)
-	const update = (param, value) => {
-		url.searchParams.set(param, value);
-		window.history.pushState({}, '', url);
-	}
-
-	let features = parse('f', 1)
-	let refactorings = parse('r')
-	let designDecisions = parse('d')
-	let surprises = parse('s')
-	let collaborators = parse('c', 2)
-	let p = parse('p', 0.8, parseFloat)
-	let strategy = params.get('strategy') || strategies[0]
-
-	let topics
+	let topics = 0
+	let collaborators = 3
+	let strategy
 	let chance
 	let displayChance
+	let p
 
-	$: topics = features + refactorings + designDecisions + surprises;
 	$: chance = chanceOfAcceptance(p, topics, collaborators, strategy);
 	$: displayChance = Math.round(chance * 100);
-
-	$: update('f', features);
-	$: update('r', refactorings);
-	$: update('d', designDecisions);
-	$: update('s', surprises);
-	$: update('c', collaborators);
-	$: update('p', p);
-	$: update('strategy', strategy);
 
 	onMount(() => MathJax.typeset());
 </script>
 
 <Row class="mb-08">
 	<Column lg={8}>
-		<h2 class="mb-06">Your pull request</h2>
-		<Form>
-			<FormGroup legendText="Decison making strategy">
-				<p>What does it take to approve a PR within your team?</p>
-				<Select bind:selected={strategy}>
-					{#each strategies as s}
-						<SelectItem value={s} text={s} />
-					{/each}
-				</Select>
-			</FormGroup>
-			<FormGroup legendText="Pull request topics \(t\)">
-				<p class="mb-06">How many topics does the pull request involve?</p>
-				<Slider class="mb-05" labelText="Features" max={5} bind:value={features} />
-				<Slider class="mb-05" labelText="Refactorings" max={5} bind:value={refactorings} />
-				<Slider class="mb-05" labelText="Design Decisions" max={5} bind:value={designDecisions} />
-				<Slider labelText="Surprises" max={5} bind:value={surprises} />
-			</FormGroup>
-			<FormGroup legendText="Number of collaborators \(c\)">
-				<p>How many collaborators do you have (excluding yourself)?</p>
-				<Slider max={5} bind:value={collaborators} />
-			</FormGroup>
-			<FormGroup legendText="Probability of acceptance \(p\)">
-				<p>What is the likelihood that your collaborators accept any topic?</p>
-				<Slider max={1} step={0.1} bind:value={p} />
-			</FormGroup>
-		</Form>
+		<Input bind:strategy bind:topics bind:collaborators bind:p />
 	</Column>
 	<Column lg={8}>
 		<h2 class="mb-06">Result</h2>
@@ -76,9 +30,7 @@
 			<p class="mb-06"><em>There is not much to review in this PR. Maybe add some topics?</em></p>
 		{/if}
 		<p>The probability of acceptance is:</p>
-		{#each strategies as s}
-			<p class='formula' class:show={s == strategy}>{formula(s)}</p>
-		{/each}
+		<Formulas {strategy} />
 		<Percentage value={displayChance} {topics} class="mb-10"/>
 		<Graph {p} {topics} {collaborators} {strategy} />
 	</Column>
@@ -93,12 +45,5 @@
 	.disclaimer {
 		color: var(--cds-text-03);
 		font-size: var(--cds-label-01-font-size);
-	}
-
-	.formula {
-		display: none;
-	}
-	.formula.show {
-		display: block;
 	}
 </style>
