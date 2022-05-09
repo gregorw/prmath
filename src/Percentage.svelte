@@ -1,7 +1,6 @@
 <script>
 	import { GaugeChart } from '@carbon/charts-svelte'
 	import '@carbon/charts/styles.min.css'
-	// import '@carbon/charts/styles-g100.css'
 
   export let value, topics;
 
