@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Row, Column } from 'carbon-components-svelte'
+  import { Row, Column, InlineNotification } from 'carbon-components-svelte'
   import { onMount } from 'svelte';
 	import Graph from './Graph.svelte';
 	import Input from './Input.svelte';
@@ -7,7 +7,7 @@
 	import Percentage from './Percentage.svelte';
 	import chanceOfAcceptance from './chance';
 
-	let topics = 0
+	let topics
 	let collaborators = 3
 	let strategy
 	let chance
@@ -26,8 +26,8 @@
 	</Column>
 	<Column lg={8}>
 		<h2 class="mb-06">Result</h2>
-		{#if topics < 1}
-			<p class="mb-06"><em>There is not much to review in this PR. Maybe add some topics?</em></p>
+		{#if topics <= 0}
+			<InlineNotification hideCloseButton kind="info" title="Oh…" subtitle="There is not much to review in this PR. Maybe add some topics on the left?" />
 		{/if}
 		<p>The probability of acceptance is:</p>
 		<Formulas {strategy} />
