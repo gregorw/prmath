@@ -2,11 +2,14 @@
 	import { ComboChart } from '@carbon/charts-svelte'
 	import chance, { strategies } from './chance';
 
-  export let p, topics, collaborators, strategy;
+  export let p, topics = 0, collaborators, strategy;
 
-  let xAxis = [...Array(11).keys()];
-  let data = xAxis.map(() => 0);
+  let samples
+  let xAxis = []
+  let data = []
 
+  $: samples = Math.max(11, topics + 1)
+  $: xAxis = [...Array(samples).keys()];
   $: {
     data = xAxis.flatMap(t => {
       return strategies.map(s => {
