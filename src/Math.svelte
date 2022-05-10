@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Row, Column, InlineNotification } from 'carbon-components-svelte'
-  import { onMount } from 'svelte';
 	import Graph from './Graph.svelte';
 	import Input from './Input.svelte';
 	import Formulas from './Formulas.svelte';
@@ -16,8 +15,6 @@
 
 	$: chance = chanceOfAcceptance(p, topics, collaborators, strategy);
 	$: displayChance = Math.round(chance * 100);
-
-	onMount(() => MathJax.typeset());
 </script>
 
 <Row class="mb-08">

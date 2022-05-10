@@ -3,8 +3,11 @@
 {/each}
 
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { strategies, formula } from './chance';
   export let strategy
+
+	onMount(() => MathJax.typeset());
 </script>
 
 <style>
