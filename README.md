@@ -14,7 +14,7 @@ What is the chance that my pull request gets accepted?
 
 <img src="https://latex.codecogs.com/svg.latex?P=1-\left(1-p^t\right)^c" />
 
-In short, the dependant variables are the number of topics, the strategy, the number of collaborators, and the average probability <img src="https://render.githubusercontent.com/render/math?math=p" /> that a single collaborator accepts a single topic.
+In short, the dependant variables are the number of topics, the strategy, the number of collaborators, and the average probability <img src="https://latex.codecogs.com/svg.latex?p" /> that a single collaborator accepts a single topic.
 
 The conclusion would be that no matter which decision making strategy you choose, you should keep your PRs small — ideally limited to a single topic.
 
