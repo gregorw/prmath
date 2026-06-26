@@ -10,7 +10,7 @@
     "docs": "yarn build && git add . && git commit -m 'Build'"
   },
   "devDependencies": {
-    "@carbon/charts-svelte": "^0.55.1",
+    "@carbon/charts-svelte": "^0.58.2",
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.31",
     "carbon-components": "^11.0.0",
     "carbon-components-svelte": "^0.62.1",
